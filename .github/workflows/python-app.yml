@@ -44,6 +44,7 @@ jobs:
         run: mypy --strict carrito.py
 
       - name: Pruebas con variables y secretos
+
         run: |
-          echo "La URL de la API es:  ${{ vars.API_URL }}
-          echo "El token secreto es:  ${{ secrets.SUPER_PASSWORD }}
+          echo "La URL de la API es: ${{ vars.API_URL }}"
+          echo "El token secreto es: ${{ secrets.SUPER_PASSWORD }}"
