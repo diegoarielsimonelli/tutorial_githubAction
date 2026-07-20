@@ -17,7 +17,12 @@ jobs:
 
     env:
       BASE_DE_DATOS: "32434562link"
+      #
+      MI_VARIABLE_PUBLICA:
+        ${{ vars.API_URL }}
 
+        # Llamar a un Secret del repositorio (encriptado)
+      MI_TOKEN_SECRETO: ${{ secrets.SUPER_PASSWORD }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -44,12 +49,6 @@ jobs:
         run: mypy --strict carrito.py
 
       - name: Pruebas con variables y secretos
-        env:
-          # Llamar a una Variable del repositorio (pública)
-          MI_VARIABLE_PUBLICA: ${{ vars.API_URL }}
-
-          # Llamar a un Secret del repositorio (encriptado)
-          MI_TOKEN_SECRETO: ${{ secrets.SUPER_PASSWORD }}
         run: |
           echo "La URL de la API es: $MI_VARIABLE_PUBLICA"
           echo "El token secreto es: $MI_TOKEN_SECRETO"
